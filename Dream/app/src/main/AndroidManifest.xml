@@ -17,6 +17,8 @@
         </activity>
         <activity android:name=".ListDreamsActivity" >
         </activity>
+        <activity android:name=".NewDream" >
+        </activity>
     </application>
 
 </manifest>
