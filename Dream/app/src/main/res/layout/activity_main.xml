@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Type your dream"
+        android:text="@string/TypeYourDream"
         android:id="@+id/textView2"
         android:layout_marginTop="25dp"
         android:layout_below="@+id/textView"
