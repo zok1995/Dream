@@ -3,6 +3,7 @@ package com.example.oleksandr.dream.DB;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.oleksandr.dream.R;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 
@@ -15,8 +16,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     public DBHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        //TODO Add raw.ormlite_config
+        super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
     }
 
     @Override

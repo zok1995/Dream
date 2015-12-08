@@ -18,4 +18,11 @@ public class DreamDetails implements Serializable{
     @DatabaseField(columnName = "cMameDream")
     public String dreamName;
 
+    public DreamDetails(){
+
+    }
+    public DreamDetails(String dreamName) {
+        this.dreamName = dreamName;
+
+    }
 }
