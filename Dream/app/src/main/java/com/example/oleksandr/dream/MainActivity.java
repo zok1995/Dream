@@ -28,4 +28,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, NewDream.class));
         }
     }
+    public void goNewView(View v){
+        switch (v.getId()) {
+            case R.id.editTextEnterDream:
+                // Говорим между какими Activity будет происходить связь
+                Intent intent = new Intent(this, NewDream.class);
+
+                // указываем первым параметром ключ, а второе значение
+                // по ключу мы будем получать значение с Intent
+                intent.putExtra("Dream", mEditTextEnterDream.getText().toString());
+                // показываем новое Activity
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+    }
 }
