@@ -3,6 +3,7 @@ package com.example.oleksandr.dream;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,6 +17,8 @@ import java.sql.SQLException;
 public class NewDream extends AppCompatActivity implements View.OnClickListener {
     private DBHelper mDbHelper;
     private Button to_list_button;
+    public String TRY = "FIRST DREAM";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,17 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         if(v == to_list_button) {
             startActivity(new Intent(this, ListDreamsActivity.class));
+            final DreamDetails dreamDetails = new DreamDetails();
+            dreamDetails.dreamName = TRY;
+            Log.i("TAAAAAAG", "onClick ");
+            try {
+                //Insert do DB
+                final Dao<DreamDetails, Integer> daoDream = getHelper().getDreamDetailsesDao();
+                daoDream.create(dreamDetails);
+                Log.i("TAAAAAAG", "onClick insert");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

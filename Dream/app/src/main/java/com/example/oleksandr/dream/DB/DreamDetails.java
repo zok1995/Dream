@@ -8,9 +8,8 @@ import java.io.Serializable;
  * Created by Oleksandr on 06.12.2015.
  */
 public class DreamDetails implements Serializable{
-    private static final long serialVersionUID = -222864131214757024L;
 
-    public static final String ID_FIELD = "student_id";
+    public static final String ID_FIELD = "dream_id";
 
     @DatabaseField(generatedId = true, columnName = ID_FIELD)
     public int dreamID;
@@ -21,7 +20,7 @@ public class DreamDetails implements Serializable{
     public DreamDetails(){
 
     }
-    public DreamDetails(String dreamName) {
+    public DreamDetails(final String dreamName) {
         this.dreamName = dreamName;
 
     }
