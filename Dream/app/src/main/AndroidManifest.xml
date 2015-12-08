@@ -19,6 +19,8 @@
         </activity>
         <activity android:name=".NewDream" >
         </activity>
+        <activity android:name=".ViewDream" >
+        </activity>
     </application>
 
 </manifest>
