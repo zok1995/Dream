@@ -3,6 +3,7 @@ package com.example.oleksandr.dream;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,19 +27,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view == mButtonNext){
             startActivity(new Intent(this, NewDream.class));
+            Intent intent = new Intent(MainActivity.this, NewDream.class);
+            // указываем первым параметром ключ, а второе значение
+            // по ключу мы будем получать значение с Intent
+            intent.putExtra("Dream", mEditTextEnterDream.getText().toString());
+            // показываем новое Activity
+            startActivity(intent);
         }
     }
     public void goNewView(View v){
         switch (v.getId()) {
             case R.id.editTextEnterDream:
                 // Говорим между какими Activity будет происходить связь
-                Intent intent = new Intent(this, NewDream.class);
 
-                // указываем первым параметром ключ, а второе значение
-                // по ключу мы будем получать значение с Intent
-                intent.putExtra("Dream", mEditTextEnterDream.getText().toString());
-                // показываем новое Activity
-                startActivity(intent);
+                Log.i("DATA FROM EDIT TEXT", "Entered " + mEditTextEnterDream.getText().toString());
                 break;
             default:
                 break;

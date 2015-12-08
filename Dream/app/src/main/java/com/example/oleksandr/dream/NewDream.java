@@ -1,12 +1,11 @@
 package com.example.oleksandr.dream;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.oleksandr.dream.DB.DBHelper;
@@ -20,15 +19,17 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
     private DBHelper mDbHelper;
     private Button to_list_button;
     public String TRY = "FIRST DREAM";
-    private TextView Dream_text;
+    private TextView mDream_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_dream);
-        Dream_text = (TextView) findViewById(R.id.Dream_text);
         String txtDream = getIntent().getStringExtra("Dream");
-        Dream_text.setText(Dream_text.getText().toString() + " " + txtDream);
+
+        mDream_text = (TextView) findViewById(R.id.Dream_text);
+
+        mDream_text.setText(mDream_text.getText().toString() + " " + txtDream);
 
         to_list_button = (Button)findViewById(R.id.to_list_button);
         to_list_button.setOnClickListener(this);
