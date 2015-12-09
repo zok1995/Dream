@@ -54,13 +54,14 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
         if (v == to_list_button) {
             startActivity(new Intent(this, ListDreamsActivity.class));
             final DreamDetails dreamDetails = new DreamDetails();
-            dreamDetails.dreamName = TRY;
+            String txtDream = getIntent().getStringExtra("Dream");
+            dreamDetails.dreamName = txtDream;
             Log.i("TAAAAAAG", "onClick ");
             try {
                 //Insert do DB
                 final Dao<DreamDetails, Integer> daoDream = getHelper().getDreamDetailsesDao();
                 daoDream.create(dreamDetails);
-                Log.i("TAAAAAAG", "onClick insert");
+                Log.i("TAAAAAAG", "onClick insert " + txtDream);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
