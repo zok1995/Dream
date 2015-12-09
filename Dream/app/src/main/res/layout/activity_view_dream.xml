@@ -21,7 +21,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
+        android:id="@+id/view_dream_text"
         android:layout_below="@+id/textView6"
         android:layout_alignRight="@+id/textView6"
         android:layout_alignEnd="@+id/textView6"
@@ -34,14 +34,14 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Dream desription"
         android:id="@+id/textView7"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/view_dream_text"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText3"
+        android:id="@+id/dream_description_text"
         android:layout_below="@+id/textView7"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
