@@ -17,8 +17,7 @@ import java.sql.SQLException;
 
 public class NewDream extends AppCompatActivity implements View.OnClickListener {
     private DBHelper mDbHelper;
-    private Button to_list_button;
-    public String TRY = "FIRST DREAM";
+    private Button mListButton;
     private TextView mDream_text;
 
     @Override
@@ -31,8 +30,8 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
 
         mDream_text.setText(mDream_text.getText().toString() + " " + txtDream);
 
-        to_list_button = (Button)findViewById(R.id.to_list_button);
-        to_list_button.setOnClickListener(this);
+        mListButton = (Button)findViewById(R.id.to_list_button);
+        mListButton.setOnClickListener(this);
         try {
             final Dao<DreamDetails, Integer> daoDream = getHelper().getDreamDetailsesDao();
             //TODO add list with dream + adapter
@@ -51,7 +50,7 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        if (v == to_list_button) {
+        if (v == mListButton) {
             startActivity(new Intent(this, ListDreamsActivity.class));
             final DreamDetails dreamDetails = new DreamDetails();
             String txtDream = getIntent().getStringExtra("Dream");
