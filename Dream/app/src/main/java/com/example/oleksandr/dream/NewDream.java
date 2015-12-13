@@ -18,7 +18,6 @@ import java.sql.SQLException;
 public class NewDream extends AppCompatActivity implements View.OnClickListener {
     private DBHelper mDbHelper;
     private Button to_list_button;
-    public String TRY = "FIRST DREAM";
     private TextView mDream_text;
 
     @Override
