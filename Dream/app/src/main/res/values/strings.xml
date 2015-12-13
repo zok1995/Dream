@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">Dream</string>
-    <string name="HintDream">My Dream is...</string>
-    <string name="Hello">Hello!</string>
-    <string name="TypeYourDream">Type your dream</string>
-    <string name="NextStep">Next step</string>
-</resources>
