@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.oleksandr.dream.Adapters.AdapterArrayDream;
 import com.example.oleksandr.dream.DB.DBHelper;
 import com.example.oleksandr.dream.DB.DreamDetails;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -38,8 +39,9 @@ public class ListDreamsActivity extends AppCompatActivity {
             final View view = inflater.inflate(R.layout.list_view, mListView, false);
             mListView.addHeaderView(view);
 
-            // TODO  Create my own adapter!
-           // mListView.setAdapter(new Rec);
+            // my own adapter!
+           mListView.setAdapter(new AdapterArrayDream(this,R.layout.list_view,dreamList,dreamDetailsDao));
+
 
         } catch (SQLException e) {
             e.printStackTrace();
