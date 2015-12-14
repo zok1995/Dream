@@ -1,10 +1,12 @@
 package com.example.oleksandr.dream.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.example.oleksandr.dream.DB.DreamDetails;
 import com.example.oleksandr.dream.R;
@@ -33,5 +35,15 @@ public class AdapterArrayDream extends ArrayAdapter<String> {
             convertView = inflater.inflate(R.layout.list_view, parent, false);
         }
 
+        if (records.get(position).getClass().isInstance(new DreamDetails())){
+             final DreamDetails dreamDetails = (DreamDetails) records.get(position);
+//            dreamDetailsDao.refresh(dreamDetails.)
+
+            ((TextView)convertView.findViewById(R.id.textViewDreamName)).setText(dreamDetails.dreamName);
+
+        }else {
+            Log.i("EROR", "ADAPTER ERROR");
+        }
+        return  convertView;
     }
 }
