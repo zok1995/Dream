@@ -28,7 +28,6 @@ public class ListDreamsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_dreams);
         mListView = (ListView) findViewById(R.id.listViewAllDreams);
-        mTextView = (TextView) findViewById(R.id.textViewTryReadFromDB);
 
         try {
             dreamDetailsDao = getHelper().getDreamDetailsesDao();
