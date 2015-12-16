@@ -34,7 +34,6 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
         to_list_button.setOnClickListener(this);
         try {
             final Dao<DreamDetails, Integer> daoDream = getHelper().getDreamDetailsesDao();
-            //TODO add list with dream + adapter
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,7 +54,7 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
             final DreamDetails dreamDetails = new DreamDetails();
             String txtDream = getIntent().getStringExtra("Dream");
             dreamDetails.dreamName = txtDream;
-            Log.i("TAAAAAAG", "onClick ");
+//            Log.i("TAAAAAAG", "onClick ");
             try {
                 //Insert do DB
                 final Dao<DreamDetails, Integer> daoDream = getHelper().getDreamDetailsesDao();
