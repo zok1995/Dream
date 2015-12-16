@@ -31,10 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (view == mButtonNext){
                 startActivity(new Intent(this, NewDream.class));
                 Intent intent = new Intent(MainActivity.this, NewDream.class);
-                // указываем первым параметром ключ, а второе значение
-                // по ключу мы будем получать значение с Intent
                 intent.putExtra("Dream", mEditTextEnterDream.getText().toString());
-                // показываем новое Activity
                 startActivity(intent);
 //                Log.i("TAAAAAAG", "ELSE " );
             }
