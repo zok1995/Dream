@@ -16,7 +16,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/Hello"
         android:id="@+id/textView"
-        android:textSize="35sp"
+        android:textSize="38sp"
         android:layout_marginTop="118dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -40,10 +40,11 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
         android:text="@string/NextStep"
         android:id="@+id/dream_button"
+        android:textSize="20sp"
         android:layout_marginBottom="94dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
