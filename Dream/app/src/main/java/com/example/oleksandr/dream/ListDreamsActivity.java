@@ -1,10 +1,12 @@
 package com.example.oleksandr.dream;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,12 +19,13 @@ import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ListDreamsActivity extends AppCompatActivity {
+public class ListDreamsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private DBHelper mDbHelper = null;
     private TextView mTextView;
     private ListView mListView;
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private List<DreamDetails> dreamList;
+    private int selectedRecordPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,8 @@ public class ListDreamsActivity extends AppCompatActivity {
 
             // my own adapter!
            mListView.setAdapter(new AdapterArrayDream(this,R.layout.list_view,dreamList,dreamDetailsDao));
+            mListView.setOnItemClickListener(this);
+
 
 
         } catch (SQLException e) {
@@ -55,4 +60,17 @@ public class ListDreamsActivity extends AppCompatActivity {
         }
         return mDbHelper;
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if(i > 0)
+        {
+            selectedRecordPosition = i - 1;
+            // Details screen showing code can put over here
+            final Intent intent = new Intent(this, ViewDream.class);
+         //   intent.putExtra("details",teacherList.get(selectedRecordPosition));
+            startActivity(intent);
+        }
+    }
+
 }
