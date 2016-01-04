@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -68,7 +69,8 @@ public class ListDreamsActivity extends AppCompatActivity implements AdapterView
             selectedRecordPosition = i - 1;
             // Details screen showing code can put over here
             final Intent intent = new Intent(this, ViewDream.class);
-         //   intent.putExtra("details",teacherList.get(selectedRecordPosition));
+            intent.putExtra("Name",dreamList.get(selectedRecordPosition));
+            Log.i("TAAAAAAG", "onClick insert " + dreamList.get(selectedRecordPosition));
             startActivity(intent);
         }
     }
