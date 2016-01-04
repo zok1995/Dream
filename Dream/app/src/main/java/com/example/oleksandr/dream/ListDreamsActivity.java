@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.example.oleksandr.dream.DB.DBHelper;
 import com.example.oleksandr.dream.DB.DreamDetails;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.DeleteBuilder;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -24,15 +26,18 @@ public class ListDreamsActivity extends AppCompatActivity implements AdapterView
     private DBHelper mDbHelper = null;
     private TextView mTextView;
     private ListView mListView;
+    private Button mButton;
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private List<DreamDetails> dreamList;
     private int selectedRecordPosition = -1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_dreams);
         mListView = (ListView) findViewById(R.id.listViewAllDreams);
+        mButton = (Button) findViewById(R.id.buttonDelete);
 
         try {
             dreamDetailsDao = getHelper().getDreamDetailsesDao();
@@ -69,10 +74,15 @@ public class ListDreamsActivity extends AppCompatActivity implements AdapterView
             selectedRecordPosition = i - 1;
             // Details screen showing code can put over here
             final Intent intent = new Intent(this, ViewDream.class);
-            intent.putExtra("Name",dreamList.get(selectedRecordPosition));
+         //   intent.putExtra("Name",dreamList.get(selectedRecordPosition));
             Log.i("TAAAAAAG", "onClick insert " + dreamList.get(selectedRecordPosition));
             startActivity(intent);
         }
     }
 
+    public void onClick(View view) throws SQLException {
+        mDbHelper.deleteAllData();
+        finish();
+        startActivity(getIntent());
+    }
 }

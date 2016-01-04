@@ -11,6 +11,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Oleksandr on 06.12.2015.
@@ -26,6 +27,14 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
     }
 
+    public void deleteAllData(){
+        try {
+            List<DreamDetails> list = dreamDetailsesDao.queryForAll();
+            dreamDetailsesDao.delete(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
