@@ -10,21 +10,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.oleksandr.dream.Adapters.AdapterArrayDream;
 import com.example.oleksandr.dream.DB.DBHelper;
 import com.example.oleksandr.dream.DB.DreamDetails;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.DeleteBuilder;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class ListDreamsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private DBHelper mDbHelper = null;
-    private TextView mTextView;
+    private DreamDetails dreamDetails;
     private ListView mListView;
     private Button mButton;
     private Dao<DreamDetails, Integer> dreamDetailsDao;
@@ -73,10 +71,21 @@ public class ListDreamsActivity extends AppCompatActivity implements AdapterView
         {
             selectedRecordPosition = i - 1;
             // Details screen showing code can put over here
+            getId(selectedRecordPosition);
+
             final Intent intent = new Intent(this, ViewDream.class);
          //   intent.putExtra("Name",dreamList.get(selectedRecordPosition));
             Log.i("TAAAAAAG", "onClick insert " + dreamList.get(selectedRecordPosition));
             startActivity(intent);
+        }
+    }
+
+    public void getId(int id){
+        try {
+            dreamDetails = mDbHelper.getDreamDetailsesDao().queryForId(id);
+            Log.i("ID","   " + dreamDetails);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

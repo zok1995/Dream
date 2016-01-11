@@ -22,6 +22,8 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     private Dao<DreamDetails, Integer> dreamDetailsesDao;
+ //   private DeleteBuilder<DreamDetails, Integer> deleteBuilder = dreamDetailsesDao.deleteBuilder();
+
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
