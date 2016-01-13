@@ -16,7 +16,7 @@ import com.example.oleksandr.dream.DB.DBHelper;
 import com.example.oleksandr.dream.DB.DreamDetails;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.Where;
+import com.j256.ormlite.stmt.DeleteBuilder;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -72,8 +72,8 @@ public class ListDreamsActivity extends AppCompatActivity implements AdapterView
         {
             selectedRecordPosition = i - 1;
             // Details screen showing code can put over here
-            getId(selectedRecordPosition);
-
+            DeleteBuilder<DreamDetails, Integer> deleteBuilder = dreamDetailsDao.deleteBuilder();
+          //  deleteBuilder.where().eq("cMameDream", )
             final Intent intent = new Intent(this, ViewDream.class);
          //   intent.putExtra("Name",dreamList.get(selectedRecordPosition));
             Log.i("TAAAAAAG", "onClick insert " + dreamList.get(selectedRecordPosition));
@@ -81,18 +81,25 @@ public class ListDreamsActivity extends AppCompatActivity implements AdapterView
         }
     }
 
-    public void getId(int id){
+  /*  public void getId(int id){
         try {
-            Where<DreamDetails, Integer> id1 = dreamDetailsDao.queryBuilder().where().eq("cMameDream", 1);
 
-            Log.i("ID","   ififififififiififififi 111" + id1);
+
+           // Log.i("ID","   ififififififiififififi 111" + id1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    } */
 
     public void onClick(View view) throws SQLException {
-        mDbHelper.deleteAllData();
+     /*   Where<DreamDetails, Integer> id1 = dreamDetailsDao.queryBuilder().where().eq("cMameDream", 1);
+        QueryBuilder<DreamDetails,Integer> queryBuilder = dreamDetailsDao.queryBuilder();
+        queryBuilder.where().eq(DreamDetails.ID_FIELD, "dream_id");
+        List<DreamDetails> list = queryBuilder.query();
+        Log.i("MEGA111", "               " + list);
+        DeleteBuilder<DreamDetails, Integer> deleteBuilder = dreamDetailsDao.deleteBuilder();*/
+
+
         finish();
         startActivity(getIntent());
     }
