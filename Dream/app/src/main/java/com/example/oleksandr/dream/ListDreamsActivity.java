@@ -16,6 +16,7 @@ import com.example.oleksandr.dream.DB.DBHelper;
 import com.example.oleksandr.dream.DB.DreamDetails;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.Where;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -82,8 +83,9 @@ public class ListDreamsActivity extends AppCompatActivity implements AdapterView
 
     public void getId(int id){
         try {
-            dreamDetails = mDbHelper.getDreamDetailsesDao().queryForId(id);
-            Log.i("ID","   " + dreamDetails);
+            Where<DreamDetails, Integer> id1 = dreamDetailsDao.queryBuilder().where().eq("cMameDream", 1);
+
+            Log.i("ID","   ififififififiififififi 111" + id1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
