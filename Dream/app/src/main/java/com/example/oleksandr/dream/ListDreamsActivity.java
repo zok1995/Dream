@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -30,7 +31,6 @@ public class ListDreamsActivity extends AppCompatActivity implements AdapterView
     private List<DreamDetails> dreamList;
     private int selectedRecordPosition = -1;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,20 +51,12 @@ public class ListDreamsActivity extends AppCompatActivity implements AdapterView
            mListView.setAdapter(new AdapterArrayDream(this,R.layout.list_view,dreamList,dreamDetailsDao));
             mListView.setOnItemClickListener(this);
 
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     // This is how, DatabaseHelper can be initialized for future use
-    private DBHelper getHelper() {
-        if (mDbHelper == null) {
-            mDbHelper = OpenHelperManager.getHelper(this, DBHelper.class);
-        }
-        return mDbHelper;
-    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -81,16 +73,21 @@ public class ListDreamsActivity extends AppCompatActivity implements AdapterView
         }
     }
 
-  /*  public void getId(int id){
-        try {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_list_dreams, menu);
+        return true;
+    }
+
+    /*  public void getId(int id){
+            try {
 
 
-           // Log.i("ID","   ififififififiififififi 111" + id1);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    } */
-
+               // Log.i("ID","   ififififififiififififi 111" + id1);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } */
     public void onClick(View view) throws SQLException {
      /*   Where<DreamDetails, Integer> id1 = dreamDetailsDao.queryBuilder().where().eq("cMameDream", 1);
         QueryBuilder<DreamDetails,Integer> queryBuilder = dreamDetailsDao.queryBuilder();
@@ -98,9 +95,14 @@ public class ListDreamsActivity extends AppCompatActivity implements AdapterView
         List<DreamDetails> list = queryBuilder.query();
         Log.i("MEGA111", "               " + list);
         DeleteBuilder<DreamDetails, Integer> deleteBuilder = dreamDetailsDao.deleteBuilder();*/
-
-
+        mDbHelper.deleteAllData();
         finish();
         startActivity(getIntent());
+    }
+    private DBHelper getHelper() {
+        if (mDbHelper == null) {
+            mDbHelper = OpenHelperManager.getHelper(this, DBHelper.class);
+        }
+        return mDbHelper;
     }
 }
