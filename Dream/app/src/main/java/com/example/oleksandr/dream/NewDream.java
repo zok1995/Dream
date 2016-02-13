@@ -50,7 +50,7 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         if (v == to_list_button) {
-            startActivity(new Intent(this, ListDreamsActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
             final DreamDetails dreamDetails = new DreamDetails();
             String txtDream = getIntent().getStringExtra("Dream");
             dreamDetails.dreamName = txtDream;
