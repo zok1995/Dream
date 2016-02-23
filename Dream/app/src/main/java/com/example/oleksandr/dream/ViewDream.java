@@ -32,6 +32,8 @@ public class ViewDream extends AppCompatActivity {
         mDreamDescriptionText = (EditText) findViewById(R.id.dream_description_text);
         mButtonDelete = (Button) findViewById(R.id.buttonDelete);
         mButtonEdit = (Button) findViewById(R.id.buttonEdit);
+//        Intent intent = getIntent();
+//        mDreanName.setText(intent.getStringExtra("DATA"));
 
 
 
