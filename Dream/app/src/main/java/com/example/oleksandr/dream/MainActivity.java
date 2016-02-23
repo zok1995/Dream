@@ -3,10 +3,13 @@ package com.example.oleksandr.dream;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -26,7 +29,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private DBHelper mDbHelper = null;
     private DreamDetails dreamDetails;
     private ListView mListView;
+    private DrawerLayout drawerLayout;
     private Button mButton;
+    private Toolbar mToolbar;
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private List<DreamDetails> dreamList;
     private int selectedRecordPosition = -1;
@@ -67,6 +72,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        initToolbar();
+        initNavigationView();
+    }
+    private void initNavigationView() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawlerLayout);
+    }
+    private void initToolbar() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle(R.string.app_name);
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                return false;
+            }
+        });
+      //  mToolbar.inflateMenu(R.menu.menu);
     }
 
     // This is how, DatabaseHelper can be initialized for future use
