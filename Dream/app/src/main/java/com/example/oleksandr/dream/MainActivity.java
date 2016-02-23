@@ -81,9 +81,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if(i > 0)
         {
             selectedRecordPosition = i - 1;
-            DeleteBuilder<DreamDetails, Integer> deleteBuilder = dreamDetailsDao.deleteBuilder();
             final Intent intent = new Intent(this, ViewDream.class);
-            Log.i("TAAAAAAG", "onClick insert " + dreamList.get(selectedRecordPosition));
+
+            try {
+              //  intent.putExtra("DATA", dreamDetailsDao);
+                Log.i("TAAAAAAG", "onClick insert " + dreamDetailsDao.queryBuilder().where().eq("cMameDream"," ").countOf());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             startActivity(intent);
         }
     }
