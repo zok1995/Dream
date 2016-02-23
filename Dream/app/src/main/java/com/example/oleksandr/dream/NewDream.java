@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.oleksandr.dream.DB.DBHelper;
 import com.example.oleksandr.dream.DB.DreamDetails;
@@ -26,7 +25,7 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_dream);
         String txtDream = getIntent().getStringExtra("Dream");
-        mEdit   = (EditText)findViewById(R.id.editText);
+        mEdit   = (EditText)findViewById(R.id.dreamName);
 
         to_list_button = (Button)findViewById(R.id.to_list_button);
         to_list_button.setOnClickListener(this);
