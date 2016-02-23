@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         {
             selectedRecordPosition = i - 1;
             final Intent intent = new Intent(this, ViewDream.class);
-            Log.i("TAAAAAAG", "onClick " + adapterView.getItemAtPosition(selectedRecordPosition));
             startActivity(intent);
         }
     }
