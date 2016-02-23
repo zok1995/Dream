@@ -42,20 +42,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.listViewAllDreams);
         mButton = (Button) findViewById(R.id.buttonDelete);
-/*
-        final DreamDetails dreamDetails = new DreamDetails();
-        String txtDream = "PORNO";
-        dreamDetails.dreamName = txtDream;
-//            Log.i("TAAAAAAG", "onClick ");
-        try {
-            //Insert do DB
-            final Dao<DreamDetails, Integer> daoDream = getHelper().getDreamDetailsesDao();
-            daoDream.create(dreamDetails);
-            Log.i("TAAAAAAG", "onClick insert " + "");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-*/
+
         try {
             dreamDetailsDao = getHelper().getDreamDetailsesDao();
             dreamList = dreamDetailsDao.queryForAll();
@@ -113,26 +100,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return true;
     }
 
-    /*  public void getId(int id){
-            try {
 
-
-               // Log.i("ID","   ififififififiififififi 111" + id1);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } */
-    public void onClick(View view) throws SQLException {
-     /*   Where<DreamDetails, Integer> id1 = dreamDetailsDao.queryBuilder().where().eq("cMameDream", 1);
-        QueryBuilder<DreamDetails,Integer> queryBuilder = dreamDetailsDao.queryBuilder();
-        queryBuilder.where().eq(DreamDetails.ID_FIELD, "dream_id");
-        List<DreamDetails> list = queryBuilder.query();
-        Log.i("MEGA111", "               " + list);
-        DeleteBuilder<DreamDetails, Integer> deleteBuilder = dreamDetailsDao.deleteBuilder();*/
-        mDbHelper.deleteAllData();
-        finish();
-        startActivity(getIntent());
-    }
     private DBHelper getHelper() {
         if (mDbHelper == null) {
             mDbHelper = OpenHelperManager.getHelper(this, DBHelper.class);
@@ -140,3 +108,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return mDbHelper;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,4 +6,6 @@
     <string name="NextStep">Next step</string>
     <string name="listOfDreams">List of dreams</string>
     <string name="action_settings">Settings</string>
+    <string name="deleteDream">Delete Dream</string>
+    <string name="editDream">Edit Dream</string>
 </resources>
