@@ -1,7 +1,9 @@
 package com.example.oleksandr.dream;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,23 +30,33 @@ public class ViewDream extends AppCompatActivity {
         setContentView(R.layout.activity_view_dream);
         mDreanName = (TextView) findViewById(R.id.DreamName);
         mDreamDescriptionText = (EditText) findViewById(R.id.dream_description_text);
+        mButtonDelete = (Button) findViewById(R.id.buttonDelete);
+        mButtonEdit = (Button) findViewById(R.id.buttonEdit);
+//        Intent intent = getIntent();
+//        mDreanName.setText(intent.getStringExtra("DATA"));
+
+
 
         String dreamName = getIntent().getStringExtra("Name");
         mDreanName.setText(dreamName);
 
     }
-    private DBHelper getHelper() {
-        if (mDbHelper == null) {
-            mDbHelper = OpenHelperManager.getHelper(this, DBHelper.class);
-        }
-        return mDbHelper;
-    }
+
     public void onClick(View view) throws SQLException {
         DeleteBuilder<DreamDetails, Integer> dreamDetailsIntegerDeleteBuilder = dreamDetailsDao.deleteBuilder();
         dreamDetailsIntegerDeleteBuilder.where().eq("cMameDream", "PORNO");
         dreamDetailsIntegerDeleteBuilder.delete();
         finish();
-        startActivity(getIntent());
+        final Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
+    }
+
+    private DBHelper getHelper() {
+        if (mDbHelper == null) {
+            mDbHelper = OpenHelperManager.getHelper(this, DBHelper.class);
+        }
+        return mDbHelper;
     }
     /*
         final DreamDetails dreamDetails = new DreamDetails();

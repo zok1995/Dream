@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.oleksandr.dream.Adapters.AdapterArrayDream;
@@ -21,9 +20,10 @@ import com.example.oleksandr.dream.DB.DBHelper;
 import com.example.oleksandr.dream.DB.DreamDetails;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.DeleteBuilder;
+import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -89,9 +89,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if(i > 0)
         {
             selectedRecordPosition = i - 1;
-            DeleteBuilder<DreamDetails, Integer> deleteBuilder = dreamDetailsDao.deleteBuilder();
             final Intent intent = new Intent(this, ViewDream.class);
-            Log.i("TAAAAAAG", "onClick insert " + dreamList.get(selectedRecordPosition));
+
+            Log.i("DATATA", (String) adapterView.getItemAtPosition(selectedRecordPosition));
             startActivity(intent);
         }
     }
