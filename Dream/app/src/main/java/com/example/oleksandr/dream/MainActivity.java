@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.listViewAllDreams);
-        mButton = (Button) findViewById(R.id.buttonDelete);
-
         try {
             dreamDetailsDao = getHelper().getDreamDetailsesDao();
             dreamList = dreamDetailsDao.queryForAll();
@@ -84,11 +82,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if(i > 0)
         {
             selectedRecordPosition = i - 1;
-            // Details screen showing code can put over here
             DeleteBuilder<DreamDetails, Integer> deleteBuilder = dreamDetailsDao.deleteBuilder();
-            //  deleteBuilder.where().eq("cMameDream", )
             final Intent intent = new Intent(this, ViewDream.class);
-            //   intent.putExtra("Name",dreamList.get(selectedRecordPosition));
             Log.i("TAAAAAAG", "onClick insert " + dreamList.get(selectedRecordPosition));
             startActivity(intent);
         }
@@ -99,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         getMenuInflater().inflate(R.menu.menu_list_dreams, menu);
         return true;
     }
-
 
     private DBHelper getHelper() {
         if (mDbHelper == null) {
