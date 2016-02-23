@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 return false;
             }
         });
-      //  mToolbar.inflateMenu(R.menu.menu);
+        mToolbar.inflateMenu(R.menu.menu);
     }
 
     @Override

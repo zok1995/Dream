@@ -3,8 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
     <item
+        android:id="@+id/action_olddreams"
+        android:orderInCategory="1"
+        android:title="@string/action_olddreams"
+        android:icon="@mipmap/ic_check"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="2"
         android:title="@string/action_settings"
-        app:showAsAction="never"/>
+        android:icon="@mipmap/ic_settings"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="3"
+        android:title="@string/action_about"
+        android:icon="@mipmap/ic_information_outline"
+        app:showAsAction="ifRoom" />
+
 </menu>
