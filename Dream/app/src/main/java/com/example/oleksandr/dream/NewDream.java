@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.oleksandr.dream.DB.DBHelper;
@@ -18,17 +19,14 @@ import java.sql.SQLException;
 public class NewDream extends AppCompatActivity implements View.OnClickListener {
     private DBHelper mDbHelper;
     private Button to_list_button;
-    private TextView mDream_text;
+    private EditText mEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_dream);
         String txtDream = getIntent().getStringExtra("Dream");
-
-        mDream_text = (TextView) findViewById(R.id.Dream_text);
-
-        mDream_text.setText(mDream_text.getText().toString() + " " + txtDream);
+        mEdit   = (EditText)findViewById(R.id.editText);
 
         to_list_button = (Button)findViewById(R.id.to_list_button);
         to_list_button.setOnClickListener(this);
@@ -52,14 +50,13 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
         if (v == to_list_button) {
             startActivity(new Intent(this, MainActivity.class));
             final DreamDetails dreamDetails = new DreamDetails();
-            String txtDream = getIntent().getStringExtra("Dream");
-            dreamDetails.dreamName = txtDream;
-//            Log.i("TAAAAAAG", "onClick ");
+            dreamDetails.dreamName = mEdit.getText().toString();
+           Log.i("TAAAAAAG", "onClick ");
             try {
                 //Insert do DB
                 final Dao<DreamDetails, Integer> daoDream = getHelper().getDreamDetailsesDao();
                 daoDream.create(dreamDetails);
-                Log.i("TAAAAAAG", "onClick insert " + txtDream);
+                Log.i("TAAAAAAG", "onClick insert " + mEdit.getText().toString());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
