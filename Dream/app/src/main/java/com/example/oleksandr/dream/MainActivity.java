@@ -1,6 +1,8 @@
 package com.example.oleksandr.dream;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.oleksandr.dream.Adapters.AdapterArrayDream;
 import com.example.oleksandr.dream.DB.DBHelper;
@@ -26,12 +29,13 @@ import com.j256.ormlite.stmt.DeleteBuilder;
 import java.sql.SQLException;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener {
     private DBHelper mDbHelper = null;
     private DreamDetails dreamDetails;
     private ListView mListView;
     private DrawerLayout drawerLayout;
     private Toolbar mToolbar;
+    private AdapterArrayDream adapterArrayDream;
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private List<DreamDetails> dreamList;
     private int selectedRecordPosition = -1;
@@ -50,10 +54,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             final LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View view = inflater.inflate(R.layout.list_view, mListView, false);
             mListView.addHeaderView(view);
+            adapterArrayDream = new AdapterArrayDream(this, R.layout.list_view, dreamList, dreamDetailsDao);
 
             // my own adapter!
-            mListView.setAdapter(new AdapterArrayDream(this,R.layout.list_view,dreamList,dreamDetailsDao));
+            mListView.setAdapter(adapterArrayDream);
             mListView.setOnItemClickListener(this);
+            mListView.setOnItemLongClickListener(this);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,12 +80,62 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if(i > 0)
         {
             selectedRecordPosition = i - 1;
-           // final Intent intent = new Intent(this, ViewDream.class);
+            final Intent intent = new Intent(this, ViewDream.class);
             Log.i("TAAAAAAG", "onClick " + adapterView.getItemAtPosition(selectedRecordPosition));
-        //    intent.putExtra("D", String.valueOf(adapterView.getItemAtPosition(selectedRecordPosition)));
-          //  startActivity(intent);
+            startActivity(intent);
         }
     }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        if (position > 0){
+            selectedRecordPosition = position - 1;
+            showAlertDialog();
+        }
+        return true;
+    }
+
+    private void showAlertDialog(){
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setMessage("Are you really want to delete the selected Dream ?");
+        alertDialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                try {
+                    dreamDetailsDao.delete(dreamList.get(selectedRecordPosition));
+                    dreamList.remove(selectedRecordPosition);
+                    mListView.invalidate();
+                    selectedRecordPosition = -1;
+                    noRecord();
+                    adapterArrayDream.notifyDataSetChanged();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        alertDialog.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        final  AlertDialog alertDialog1 = alertDialog.create();
+        alertDialog1.show();
+    }
+
+    private void noRecord() {
+        if (dreamList.size() == 0){
+            final TextView tv = new TextView(this);
+            tv.setPadding(5, 5, 5, 5);
+            tv.setTextSize(15);
+            tv.setText("No Record Found !!");
+            mListView.addFooterView(tv);
+        }
+    }
+
+
     private void initNavigationView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawlerLayout);
     }
@@ -95,10 +151,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       //  mToolbar.inflateMenu(R.menu.menu);
     }
 
-    // This is how, DatabaseHelper can be initialized for future use
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_list_dreams, menu);
@@ -111,6 +163,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         return mDbHelper;
     }
+
+
 }
 
 
