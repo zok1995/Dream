@@ -1,5 +1,6 @@
 package com.example.oleksandr.dream;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,8 +30,9 @@ public class ViewDream extends AppCompatActivity {
         mDreanName = (TextView) findViewById(R.id.DreamName);
         mDreamDescriptionText = (EditText) findViewById(R.id.dream_description_text);
 
-        String dreamName = getIntent().getStringExtra("Name");
-        mDreanName.setText(dreamName);
+        Intent intent = getIntent();
+        String a = intent.getStringExtra("D");
+        mDreanName.setText(a);
 
     }
     private DBHelper getHelper() {

@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.listViewAllDreams);
         try {
+            //Getting all Data from DB
             dreamDetailsDao = getHelper().getDreamDetailsesDao();
             dreamList = dreamDetailsDao.queryForAll();
 
@@ -67,6 +68,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if(i > 0)
+        {
+            selectedRecordPosition = i - 1;
+           // final Intent intent = new Intent(this, ViewDream.class);
+            Log.i("TAAAAAAG", "onClick " + adapterView.getItemAtPosition(selectedRecordPosition));
+        //    intent.putExtra("D", String.valueOf(adapterView.getItemAtPosition(selectedRecordPosition)));
+          //  startActivity(intent);
+        }
+    }
     private void initNavigationView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawlerLayout);
     }
@@ -84,17 +97,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     // This is how, DatabaseHelper can be initialized for future use
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if(i > 0)
-        {
-            selectedRecordPosition = i - 1;
-            DeleteBuilder<DreamDetails, Integer> deleteBuilder = dreamDetailsDao.deleteBuilder();
-            final Intent intent = new Intent(this, ViewDream.class);
-            Log.i("TAAAAAAG", "onClick insert " + dreamList.get(selectedRecordPosition));
-            startActivity(intent);
-        }
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
