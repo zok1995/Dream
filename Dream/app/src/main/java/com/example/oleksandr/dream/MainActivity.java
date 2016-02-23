@@ -3,6 +3,7 @@ package com.example.oleksandr.dream;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -58,6 +59,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         initToolbar();
         initNavigationView();
+        FloatingActionButton myFab = (FloatingActionButton)findViewById(R.id.fab);
+        myFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NewDream.class);
+                startActivity(intent);
+            }
+        });
     }
     private void initNavigationView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawlerLayout);
