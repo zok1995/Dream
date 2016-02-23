@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private DreamDetails dreamDetails;
     private ListView mListView;
     private DrawerLayout drawerLayout;
-    private Button mButton;
     private Toolbar mToolbar;
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private List<DreamDetails> dreamList;
