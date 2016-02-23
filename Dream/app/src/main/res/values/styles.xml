@@ -7,7 +7,7 @@
     <style name="AppDefault" parent="AppTheme">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="windowNoTitle">true</item>
+        <item name="android:colorControlNormal">@color/color_white</item>
     </style>
 
 </resources>

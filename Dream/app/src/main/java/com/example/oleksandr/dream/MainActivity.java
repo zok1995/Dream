@@ -15,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,14 +23,11 @@ import com.example.oleksandr.dream.DB.DBHelper;
 import com.example.oleksandr.dream.DB.DreamDetails;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.DeleteBuilder;
-
 import java.sql.SQLException;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener {
     private DBHelper mDbHelper = null;
-    private DreamDetails dreamDetails;
     private ListView mListView;
     private DrawerLayout drawerLayout;
     private Toolbar mToolbar;
@@ -39,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private List<DreamDetails> dreamList;
     private int selectedRecordPosition = -1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +78,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         {
             selectedRecordPosition = i - 1;
             final Intent intent = new Intent(this, ViewDream.class);
-            Log.i("TAAAAAAG", "onClick " + adapterView.getItemAtPosition(selectedRecordPosition));
+
+            Log.i("DATATA", (String) adapterView.getItemAtPosition(selectedRecordPosition));
             startActivity(intent);
         }
     }
@@ -139,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private void initNavigationView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawlerLayout);
     }
+
     private void initToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle(R.string.app_name);
@@ -155,6 +154,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_list_dreams, menu);
         return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private DBHelper getHelper() {
