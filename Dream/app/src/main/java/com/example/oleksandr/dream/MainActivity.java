@@ -82,7 +82,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         {
             selectedRecordPosition = i - 1;
             final Intent intent = new Intent(this, ViewDream.class);
-            Log.i("TAAAAAAG", "onClick " + adapterView.getItemAtPosition(selectedRecordPosition));
+
+            Log.i("DATATA", (String) adapterView.getItemAtPosition(selectedRecordPosition));
             startActivity(intent);
         }
     }
@@ -152,23 +153,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       //  mToolbar.inflateMenu(R.menu.menu);
     }
 
-<<<<<<< HEAD
-    // This is how, DatabaseHelper can be initialized for future use
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if(i > 0)
-        {
-            selectedRecordPosition = i - 1;
-            final Intent intent = new Intent(this, ViewDream.class);
-
-            Log.i("DATATA", (String) adapterView.getItemAtPosition(selectedRecordPosition));
-            startActivity(intent);
-        }
-    }
-
-=======
->>>>>>> Hotfixes
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_list_dreams, menu);
