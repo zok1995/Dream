@@ -37,8 +37,9 @@ public class ViewDream extends AppCompatActivity {
 
 
 
-        String dreamName = getIntent().getStringExtra("Name");
-        mDreanName.setText(dreamName);
+        Intent intent = getIntent();
+        String a = intent.getStringExtra("D");
+        mDreanName.setText(a);
 
     }
 
