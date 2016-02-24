@@ -18,23 +18,16 @@ import java.sql.SQLException;
 public class NewDream extends AppCompatActivity implements View.OnClickListener {
     private DBHelper mDbHelper;
     private Button to_list_button;
-    private EditText mEdit;
+    private EditText mEditdreamNAme, mEditTextDreamDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_dream);
-        String txtDream = getIntent().getStringExtra("Dream");
-        mEdit   = (EditText)findViewById(R.id.dreamName);
-
+        mEditdreamNAme = (EditText)findViewById(R.id.editTextdreamName);
+        mEditTextDreamDescription = (EditText) findViewById(R.id.editTextdreamDesriprion);
         to_list_button = (Button)findViewById(R.id.to_list_button);
-        to_list_button.setOnClickListener(this);
-        try {
-            final Dao<DreamDetails, Integer> daoDream = getHelper().getDreamDetailsesDao();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
     }
     private DBHelper getHelper() {
@@ -49,13 +42,14 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
         if (v == to_list_button) {
             startActivity(new Intent(this, MainActivity.class));
             final DreamDetails dreamDetails = new DreamDetails();
-            dreamDetails.dreamName = mEdit.getText().toString();
+            dreamDetails.dreamName = mEditdreamNAme.getText().toString();
+            dreamDetails.descriptionDream = mEditTextDreamDescription.getText().toString();
            Log.i("TAAAAAAG", "onClick ");
             try {
                 //Insert do DB
                 final Dao<DreamDetails, Integer> daoDream = getHelper().getDreamDetailsesDao();
                 daoDream.create(dreamDetails);
-                Log.i("TAAAAAAG", "onClick insert " + mEdit.getText().toString());
+                Log.i("TAAAAAAG", "onClick insert " + mEditdreamNAme.getText().toString());
             } catch (SQLException e) {
                 e.printStackTrace();
             }

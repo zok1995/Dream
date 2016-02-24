@@ -22,7 +22,7 @@ public class ViewDream extends AppCompatActivity {
     private EditText mDreamDescriptionText;
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private DBHelper mDbHelper = null;
-    private Button mButtonDelete, mButtonEdit;
+    private Button mButtonEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +30,9 @@ public class ViewDream extends AppCompatActivity {
         setContentView(R.layout.activity_view_dream);
         mDreanName = (TextView) findViewById(R.id.DreamName);
         mDreamDescriptionText = (EditText) findViewById(R.id.dream_description_text);
-        mButtonDelete = (Button) findViewById(R.id.buttonDelete);
         mButtonEdit = (Button) findViewById(R.id.buttonEdit);
-//        Intent intent = getIntent();
-//        mDreanName.setText(intent.getStringExtra("DATA"));
-
-
-
         Intent intent = getIntent();
-        String a = intent.getStringExtra("D");
+        String a = intent.getStringExtra("DATA");
         mDreanName.setText(a);
 
     }
@@ -59,18 +53,5 @@ public class ViewDream extends AppCompatActivity {
         }
         return mDbHelper;
     }
-    /*
-        final DreamDetails dreamDetails = new DreamDetails();
-        String txtDream = "Go";
-        dreamDetails.dreamName = txtDream;
-//            Log.i("TAAAAAAG", "onClick ");
-        try {
-            //Insert do DB
-            final Dao<DreamDetails, Integer> daoDream = getHelper().getDreamDetailsesDao();
-            daoDream.create(dreamDetails);
-            Log.i("TAAAAAAG", "onClick insert " + "");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-*/
+
 }
