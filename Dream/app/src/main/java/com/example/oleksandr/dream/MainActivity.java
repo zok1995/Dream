@@ -10,7 +10,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,8 +37,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private List<DreamDetails> dreamList;
     private int selectedRecordPosition = -1;
     private TextView textView;
-    private Context context;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,12 +93,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         if (position > 0){
             selectedRecordPosition = position - 1;
-            showAlertDialog();
+            showAlertDialogDelete();
         }
         return true;
     }
 
-    private void showAlertDialog(){
+    private void showAlertDialogDelete(){
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setMessage(R.string.deleteConfirmation);
         alertDialog.setPositiveButton(R.string.deleteDream, new DialogInterface.OnClickListener() {
