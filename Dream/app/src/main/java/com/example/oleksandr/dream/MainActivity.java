@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,7 +35,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private AdapterArrayDream adapterArrayDream;
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private List<DreamDetails> dreamList;
-    private int selectedRecordPosition = -1;
+    private int selectedRecordPosition = -1;;
+    private TextView textView;
 
 
     @Override
@@ -77,7 +79,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if(i > 0)
         {
             selectedRecordPosition = i - 1;
+            /* Magick do not touch */
+            LinearLayout linearLayout = (LinearLayout) view;
+            textView = (TextView) linearLayout.findViewById(R.id.textViewDreamName);
+            String string = textView.getText().toString();
             final Intent intent = new Intent(this, ViewDream.class);
+            intent.putExtra("DATA",string);
             startActivity(intent);
         }
     }

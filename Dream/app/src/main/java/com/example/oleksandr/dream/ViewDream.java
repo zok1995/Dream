@@ -22,7 +22,7 @@ public class ViewDream extends AppCompatActivity {
     private EditText mDreamDescriptionText;
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private DBHelper mDbHelper = null;
-    private Button mButtonDelete, mButtonEdit;
+    private Button mButtonEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +30,9 @@ public class ViewDream extends AppCompatActivity {
         setContentView(R.layout.activity_view_dream);
         mDreanName = (TextView) findViewById(R.id.DreamName);
         mDreamDescriptionText = (EditText) findViewById(R.id.dream_description_text);
-        mButtonDelete = (Button) findViewById(R.id.buttonDelete);
         mButtonEdit = (Button) findViewById(R.id.buttonEdit);
-//        Intent intent = getIntent();
-//        mDreanName.setText(intent.getStringExtra("DATA"));
-
-
-
         Intent intent = getIntent();
-        String a = intent.getStringExtra("D");
+        String a = intent.getStringExtra("DATA");
         mDreanName.setText(a);
 
     }
