@@ -14,4 +14,7 @@
     <string name="addDream">Add Dream</string>
     <string name="enterYourDream">Enter your dream:</string>
     <string name="yourDreamDescription">Your dream desription</string>
+    <string name="developed_by">Developed by Oleksandr Malakhovskyi and Maksym Radchuk</string>
+    <string name="ok">OK</string>
+    <string name="deleteConfirmation">Are you really want to delete the selected Dream ?</string>
 </resources>

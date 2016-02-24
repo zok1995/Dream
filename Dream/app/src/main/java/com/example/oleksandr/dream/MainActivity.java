@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private List<DreamDetails> dreamList;
     private int selectedRecordPosition = -1;;
     private TextView textView;
+    private Context context;
 
 
     @Override
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -100,8 +103,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private void showAlertDialog(){
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setMessage("Are you really want to delete the selected Dream ?");
-        alertDialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+        alertDialog.setMessage(R.string.deleteConfirmation);
+        alertDialog.setPositiveButton(R.string.deleteDream, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 try {
@@ -118,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        alertDialog.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -126,6 +129,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
         final  AlertDialog alertDialog1 = alertDialog.create();
         alertDialog1.show();
+    }
+    private void showAlertInfoDialog(){
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setMessage(R.string.developed_by);
+        alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        final  AlertDialog alertDialog2 = alertDialog.create();
+        alertDialog2.show();
+
     }
 
     private void noRecord() {
@@ -141,6 +156,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private void initNavigationView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawlerLayout);
+       NavigationView navigationView = (NavigationView) findViewById(R.id.navidation);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                drawerLayout.closeDrawers();
+                switch (item.getItemId()) {
+                    case R.id.action_about:
+                        showAlertInfoDialog();
+                }
+                return true;
+            }
+        });
+
     }
 
     private void initToolbar() {
