@@ -10,18 +10,23 @@ import java.io.Serializable;
 public class DreamDetails implements Serializable{
 
     public static final String ID_FIELD = "dream_id";
+    public static final String DREAM_NAME = "cMameDream";
+    public static final String DESCRIPTION = "Description";
 
     @DatabaseField(generatedId = true, columnName = ID_FIELD)
     public int dreamID;
 
-    @DatabaseField(columnName = "cMameDream")
+    @DatabaseField(canBeNull = false, columnName = DREAM_NAME)
     public String dreamName;
+
+    @DatabaseField(columnName = DESCRIPTION)
+    public String descriptionDream;
 
     public DreamDetails(){
 
     }
-    public DreamDetails(final String dreamName) {
+    public DreamDetails(final String dreamName,final String descriptionDream) {
         this.dreamName = dreamName;
-
+        this.descriptionDream = descriptionDream;
     }
 }
