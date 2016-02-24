@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     dreamList.remove(selectedRecordPosition);
                     mListView.invalidate();
                     selectedRecordPosition = -1;
-                    noRecord();
+                  //  noRecord();
                     adapterArrayDream.notifyDataSetChanged();
 
                 } catch (SQLException e) {
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    private void noRecord() {
+ /*   private void noRecord() {
         if (dreamList.size() == 0){
             final TextView tv = new TextView(this);
             tv.setPadding(5, 5, 5, 5);
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             mListView.addFooterView(tv);
         }
     }
-
+*/
 
     private void initNavigationView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawlerLayout);
