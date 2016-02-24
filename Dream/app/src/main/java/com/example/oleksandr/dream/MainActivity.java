@@ -155,8 +155,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 */
 
     private void initNavigationView() {
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawlerLayout);
-       NavigationView navigationView = (NavigationView) findViewById(R.id.navidation);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+       NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
