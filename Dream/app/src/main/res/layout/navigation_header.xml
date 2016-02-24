@@ -11,9 +11,8 @@
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:src="@drawable/icon_xl"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
         app:civ_border_width="2dp"
         app:civ_border_color="@color/color_white"/>
     <TextView
@@ -21,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
+        android:layout_gravity="center_horizontal"
         android:textColor="@color/color_white"
         android:id="@+id/mName"
         android:layout_marginTop="24dp"
