@@ -3,7 +3,6 @@ package com.example.oleksandr.dream;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +18,7 @@ import java.sql.SQLException;
 
 public class ViewDream extends AppCompatActivity {
     private TextView mDreanName;
-    private EditText mDreamDescriptionText;
+    private EditText DremaDescription;
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private DBHelper mDbHelper = null;
     private Button mButtonEdit;
@@ -29,11 +28,13 @@ public class ViewDream extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_dream);
         mDreanName = (TextView) findViewById(R.id.DreamName);
-        mDreamDescriptionText = (EditText) findViewById(R.id.dream_description_text);
+        DremaDescription = (EditText) findViewById(R.id.dream_description_text);
         mButtonEdit = (Button) findViewById(R.id.buttonEdit);
         Intent intent = getIntent();
-        String a = intent.getStringExtra("DATA");
-        mDreanName.setText(a);
+        String name = intent.getStringExtra("NAME");
+        String description = intent.getStringExtra("DESCRIPTION");
+        mDreanName.setText(name);
+        DremaDescription.setText(description);
 
     }
 

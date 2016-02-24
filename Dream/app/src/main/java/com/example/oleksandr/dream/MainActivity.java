@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private List<DreamDetails> dreamList;
     private int selectedRecordPosition = -1;
-    private TextView textView;
+    private TextView mTextViewName,mTextViewDescriprion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +81,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             selectedRecordPosition = i - 1;
             /* Magick do not touch */
             LinearLayout linearLayout = (LinearLayout) view;
-            textView = (TextView) linearLayout.findViewById(R.id.textViewDreamName);
-            String string = textView.getText().toString();
+            mTextViewName = (TextView) linearLayout.findViewById(R.id.textViewDreamName);
+            mTextViewDescriprion = (TextView) linearLayout.findViewById(R.id.textViewDreamDescription);
+            String description = mTextViewDescriprion.getText().toString();
+            String name = mTextViewName.getText().toString();
             final Intent intent = new Intent(this, ViewDream.class);
-            intent.putExtra("DATA",string);
+            intent.putExtra("NAME",name);
+            intent.putExtra("DESCRIPTION",description);
             startActivity(intent);
         }
     }
@@ -109,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     dreamList.remove(selectedRecordPosition);
                     mListView.invalidate();
                     selectedRecordPosition = -1;
-                  //  noRecord();
+                    //  noRecord();
                     adapterArrayDream.notifyDataSetChanged();
 
                 } catch (SQLException e) {

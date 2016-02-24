@@ -23,8 +23,8 @@ public class DreamDetails implements Serializable{
     public DreamDetails(){
 
     }
-    public DreamDetails(final String dreamName) {
+    public DreamDetails(final String dreamName,final String descriptionDream) {
         this.dreamName = dreamName;
-
+        this.descriptionDream = descriptionDream;
     }
 }
