@@ -67,8 +67,8 @@ public class ViewDream extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 try {
                     UpdateBuilder<DreamDetails, Integer> updateBuilder = dreamDetailsDao.updateBuilder();
-                    updateBuilder.where().eq("cMameDream", name);
-                    updateBuilder.where().eq("Description",description);
+                    updateBuilder.where().eq(DreamDetails.DREAM_NAME, name);
+                    updateBuilder.where().eq(DreamDetails.DESCRIPTION,description);
                     updateBuilder.updateColumnValue(DreamDetails.DREAM_NAME, mEditTextName.getText().toString());
                     updateBuilder.updateColumnValue(DreamDetails.DESCRIPTION, mEditTextDescription.getText().toString());
                     updateBuilder.update();

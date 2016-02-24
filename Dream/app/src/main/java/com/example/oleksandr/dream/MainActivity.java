@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     dreamList.remove(selectedRecordPosition);
                     mListView.invalidate();
                     selectedRecordPosition = -1;
-                  //  noRecord();
                     adapterArrayDream.notifyDataSetChanged();
 
                 } catch (SQLException e) {
@@ -146,17 +145,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         alertDialog2.show();
 
     }
-
- /*   private void noRecord() {
-        if (dreamList.size() == 0){
-            final TextView tv = new TextView(this);
-            tv.setPadding(5, 5, 5, 5);
-            tv.setTextSize(15);
-       //     tv.setText("No Record Found !!");
-            mListView.addFooterView(tv);
-        }
-    }
-*/
 
     private void initNavigationView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -190,15 +178,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,mToolbar ,  R.string.ok, R.string.ok) {
     public void onDrawerClosed(View view) {
         super.onDrawerClosed(view);
-        //getActionBar().setTitle(mTitle);
-        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+        invalidateOptionsMenu();
     }
 
-    /** Called when a drawer has settled in a completely open state. */
     public void onDrawerOpened(View drawerView) {
         super.onDrawerOpened(drawerView);
-        //getActionBar().setTitle(mDrawerTitle);
-        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+        invalidateOptionsMenu();
     }
 };
 
@@ -245,26 +230,4 @@ drawerLayout.setDrawerListener(mDrawerToggle);
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

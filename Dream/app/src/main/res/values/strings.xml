@@ -18,4 +18,6 @@
     <string name="ok">OK</string>
     <string name="deleteConfirmation">Are you really want to delete the selected Dream ?</string>
     <string name="newName">Enter new name</string>
+    <string name="dreamDescription">Dream Description</string>
+    <string name="name">Enter new name</string>
 </resources>
