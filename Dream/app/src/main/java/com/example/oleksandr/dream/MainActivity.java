@@ -4,10 +4,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private List<DreamDetails> dreamList;
     private int selectedRecordPosition = -1;
     private TextView textView;
+    private ActionBarDrawerToggle mDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         initToolbar();
         initNavigationView();
         FloatingActionButton myFab = (FloatingActionButton)findViewById(R.id.fab);
@@ -170,7 +174,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private void initToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToolbar.setTitle(R.string.app_name);
+        setSupportActionBar(mToolbar);
         mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -178,14 +184,44 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
         mToolbar.inflateMenu(R.menu.menu);
+        mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,mToolbar ,  R.string.ok, R.string.ok) {
+    public void onDrawerClosed(View view) {
+        super.onDrawerClosed(view);
+        //getActionBar().setTitle(mTitle);
+        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+    }
+
+    /** Called when a drawer has settled in a completely open state. */
+    public void onDrawerOpened(View drawerView) {
+        super.onDrawerOpened(drawerView);
+        //getActionBar().setTitle(mDrawerTitle);
+        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+    }
+};
+
+
+// Set the drawer toggle as the DrawerListener
+drawerLayout.setDrawerListener(mDrawerToggle);
+        }
+
+   @Override
+   public boolean onCreateOptionsMenu(Menu menu) {
+      getMenuInflater().inflate(R.menu.menu, menu);
+       return true;
+   }
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState)
+    {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_list_dreams, menu);
-        return true;
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
     }
-
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
