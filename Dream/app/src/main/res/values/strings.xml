@@ -10,5 +10,5 @@
     <string name="deleteDream">Delete Dream</string>
     <string name="editDream">Edit Dream</string>
     <string name="search_title">Search</string>
-    <string name="action_olddreams">Old Dreams</string>
+    <string name="action_old">Old Dreams</string>
 </resources>

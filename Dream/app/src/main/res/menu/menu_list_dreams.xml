@@ -1,24 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
     <item
-        android:id="@+id/action_olddreams"
+        android:id="@+id/action_old"
         android:orderInCategory="1"
-        android:title="@string/action_olddreams"
-        android:icon="@mipmap/ic_check"
-        app:showAsAction="ifRoom" />
+        android:title="@string/action_old"
+        android:icon="@mipmap/ic_check" />
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="2"
+        android:orderInCategory="1"
         android:title="@string/action_settings"
-        android:icon="@mipmap/ic_settings"
-        app:showAsAction="ifRoom"/>
+        android:icon="@mipmap/ic_settings" />
     <item
         android:id="@+id/action_about"
-        android:orderInCategory="3"
+        android:orderInCategory="1"
         android:title="@string/action_about"
-        android:icon="@mipmap/ic_information_outline"
-        app:showAsAction="ifRoom" />
+        android:icon="@mipmap/ic_information_outline" />
 
 </menu>
