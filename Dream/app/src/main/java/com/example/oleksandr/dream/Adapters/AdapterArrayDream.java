@@ -39,8 +39,8 @@ public class AdapterArrayDream extends ArrayAdapter<String> {
              final DreamDetails dreamDetails = (DreamDetails) records.get(position);
 //            dreamDetailsDao.refresh(dreamDetails.)
 
-            ((TextView)convertView.findViewById(R.id.textViewDreamName)).setText(dreamDetails.dreamName);
-
+            ((TextView) convertView.findViewById(R.id.textViewDreamName)).setText(dreamDetails.dreamName);
+            ((TextView) convertView.findViewById(R.id.textViewDreamDescription)).setText(dreamDetails.descriptionDream);
         }else {
             Log.i("EROR", "ADAPTER ERROR");
         }

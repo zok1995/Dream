@@ -14,14 +14,17 @@ public class DreamDetails implements Serializable{
     @DatabaseField(generatedId = true, columnName = ID_FIELD)
     public int dreamID;
 
-    @DatabaseField(columnName = "cMameDream")
+    @DatabaseField(canBeNull = false, columnName = "cMameDream")
     public String dreamName;
+
+    @DatabaseField(columnName = "Description")
+    public String descriptionDream;
 
     public DreamDetails(){
 
     }
-    public DreamDetails(final String dreamName) {
+    public DreamDetails(final String dreamName,final String descriptionDream) {
         this.dreamName = dreamName;
-
+        this.descriptionDream = descriptionDream;
     }
 }
