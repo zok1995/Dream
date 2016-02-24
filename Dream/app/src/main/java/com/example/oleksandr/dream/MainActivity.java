@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private AdapterArrayDream adapterArrayDream;
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private List<DreamDetails> dreamList;
-    private int selectedRecordPosition = -1;;
+    private int selectedRecordPosition = -1;
     private TextView textView;
 
 

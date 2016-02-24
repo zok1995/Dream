@@ -43,6 +43,7 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
             startActivity(new Intent(this, MainActivity.class));
             final DreamDetails dreamDetails = new DreamDetails();
             dreamDetails.dreamName = mEditdreamNAme.getText().toString();
+            dreamDetails.descriptionDream = mEditTextDreamDescription.getText().toString();
            Log.i("TAAAAAAG", "onClick ");
             try {
                 //Insert do DB
