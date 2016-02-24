@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             final TextView tv = new TextView(this);
             tv.setPadding(5, 5, 5, 5);
             tv.setTextSize(15);
-            tv.setText("No Record Found !!");
+       //     tv.setText("No Record Found !!");
             mListView.addFooterView(tv);
         }
     }
