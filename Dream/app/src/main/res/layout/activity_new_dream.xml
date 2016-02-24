@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Enter your dream:"
+        android:text="@string/enterYourDream"
         android:id="@+id/textView4"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -20,8 +20,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Dream"
+        android:text="@string/addDream"
         android:id="@+id/to_list_button"
+        android:onClick="onClick"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -29,9 +30,9 @@
         android:layout_alignParentEnd="true" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/dreamName"
+        android:id="@+id/editTextdreamName"
         android:layout_below="@+id/textView4"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="49dp" />
@@ -40,16 +41,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Your dream desription"
+        android:text="@string/yourDreamDescription"
         android:id="@+id/textView"
-        android:layout_below="@+id/dreamName"
+        android:layout_below="@+id/editTextdreamName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="51dp" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/dreamDesriprion"
+        android:id="@+id/editTextdreamDesriprion"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 

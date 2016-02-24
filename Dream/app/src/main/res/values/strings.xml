@@ -11,4 +11,7 @@
     <string name="editDream">Edit Dream</string>
     <string name="search_title">Search</string>
     <string name="action_old">Old Dreams</string>
+    <string name="addDream">Add Dream</string>
+    <string name="enterYourDream">Enter your dream:</string>
+    <string name="yourDreamDescription">Your dream desription</string>
 </resources>

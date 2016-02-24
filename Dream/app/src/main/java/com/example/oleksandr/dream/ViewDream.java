@@ -53,18 +53,5 @@ public class ViewDream extends AppCompatActivity {
         }
         return mDbHelper;
     }
-    /*
-        final DreamDetails dreamDetails = new DreamDetails();
-        String txtDream = "Go";
-        dreamDetails.dreamName = txtDream;
-//            Log.i("TAAAAAAG", "onClick ");
-        try {
-            //Insert do DB
-            final Dao<DreamDetails, Integer> daoDream = getHelper().getDreamDetailsesDao();
-            daoDream.create(dreamDetails);
-            Log.i("TAAAAAAG", "onClick insert " + "");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-*/
+
 }
