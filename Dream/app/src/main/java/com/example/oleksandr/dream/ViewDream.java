@@ -89,11 +89,6 @@ public class ViewDream extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
     private DBHelper getHelper() {
         if (mDbHelper == null) {
             mDbHelper = OpenHelperManager.getHelper(this, DBHelper.class);

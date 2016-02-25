@@ -20,4 +20,5 @@
     <string name="newName">Enter new name</string>
     <string name="dreamDescription">Dream Description</string>
     <string name="name">Enter new name</string>
+    <string name="save">Save</string>
 </resources>
