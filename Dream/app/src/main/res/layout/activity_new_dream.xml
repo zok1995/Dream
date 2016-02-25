@@ -53,5 +53,14 @@
         android:id="@+id/editTextdreamDesriprion"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="76dp"
+        android:layout_above="@+id/to_list_button"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
 
 </RelativeLayout>

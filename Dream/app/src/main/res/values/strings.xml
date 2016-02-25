@@ -19,4 +19,5 @@
     <string name="deleteConfirmation">Are you really want to delete the selected Dream ?</string>
     <string name="newName">Enter new name</string>
     <string name="name">Nyan Cat</string>
+    <string name="facebook_app_id">1745871962354784</string>
 </resources>
