@@ -63,4 +63,13 @@
         android:layout_alignLeft="@+id/textView4"
         android:layout_alignStart="@+id/textView4" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set time"
+        android:id="@+id/buttonSetTime"
+        android:onClick="onClickSetTime"
+        android:layout_below="@+id/editTextdreamDesriprion"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

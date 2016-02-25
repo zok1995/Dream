@@ -7,24 +7,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/newName"
-        android:id="@+id/textView2" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextUpdateDreamName" />
+        android:text="Check time"
+        android:id="@+id/textView8"
+        android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/dreamDescription"
-        android:id="@+id/textView5" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextUpdateDreamDescription" />
+        android:id="@+id/textViewCheckTime"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
