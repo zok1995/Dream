@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
 import com.example.oleksandr.dream.DB.DBHelper;
 import com.example.oleksandr.dream.DB.DreamDetails;
@@ -20,7 +21,8 @@ import java.sql.SQLException;
 
 public class NewDream extends AppCompatActivity implements View.OnClickListener {
     private DBHelper mDbHelper;
-    private Button mButtonToList, mButtonSetTime;
+    private Button mButtonToList;
+    private TimePicker mTimePicker;
     private EditText mEditdreamNAme, mEditTextDreamDescription;
 
     @Override
@@ -30,22 +32,9 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
         mEditdreamNAme = (EditText)findViewById(R.id.editTextdreamName);
         mEditTextDreamDescription = (EditText) findViewById(R.id.editTextdreamDesriprion);
         mButtonToList = (Button)findViewById(R.id.to_list_button);
-        mButtonSetTime =  (Button) findViewById(R.id.buttonSetTime);
+        mTimePicker = (TimePicker) findViewById(R.id.timePicker);
+        mTimePicker.setIs24HourView(true);
 
-    }
-    public void onClickSetTime(View view) {
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        View view1 = inflater.inflate(R.layout.alarm_dialog_check_time, null);
-        alertDialog.setView(view1);
-        alertDialog.setMessage("Check time");
-        alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        final  AlertDialog alertDialog2 = alertDialog.create();
-        alertDialog2.show();
     }
 
     @Override

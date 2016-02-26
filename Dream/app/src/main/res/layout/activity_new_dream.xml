@@ -54,12 +54,10 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
+    <TimePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Set time"
-        android:id="@+id/buttonSetTime"
-        android:onClick="onClickSetTime"
+        android:id="@+id/timePicker"
         android:layout_below="@+id/editTextdreamDesriprion"
         android:layout_centerHorizontal="true" />
 
