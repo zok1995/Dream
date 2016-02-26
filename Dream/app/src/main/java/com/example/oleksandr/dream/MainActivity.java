@@ -20,10 +20,12 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.facebook.FacebookSdk;
 
 import com.example.oleksandr.dream.Adapters.AdapterArrayDream;
 import com.example.oleksandr.dream.DB.DBHelper;
 import com.example.oleksandr.dream.DB.DreamDetails;
+import com.facebook.appevents.AppEventsLogger;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
@@ -77,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
 
     }
-
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         if(i > 0)
