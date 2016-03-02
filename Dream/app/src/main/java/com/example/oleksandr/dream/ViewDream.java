@@ -20,13 +20,13 @@ import com.j256.ormlite.stmt.UpdateBuilder;
 import java.sql.SQLException;
 
 public class ViewDream extends AppCompatActivity {
-    private TextView mDreanName,mTextViewDremaDescription;
+    private TextView mDreanName,mTextViewDremaDescription, mTextViewTime;
     private EditText mEditTextName;
     private EditText mEditTextDescription;
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private DBHelper mDbHelper = null;
     private Button mButtonEdit;
-    private String name,description;
+    private String name,description,time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class ViewDream extends AppCompatActivity {
         mDreanName = (TextView) findViewById(R.id.DreamName);
         mTextViewDremaDescription = (TextView) findViewById(R.id.textViewDescription);
         mButtonEdit = (Button) findViewById(R.id.buttonEdit);
+        mTextViewTime = (TextView) findViewById(R.id.textViewTime);
 
         try {
             dreamDetailsDao = getHelper().getDreamDetailsesDao();
@@ -44,9 +45,10 @@ public class ViewDream extends AppCompatActivity {
         Intent intent = getIntent();
         name = intent.getStringExtra("NAME");
         description = intent.getStringExtra("DESCRIPTION");
+        time = intent.getStringExtra("TIME");
         mDreanName.setText(name);
         mTextViewDremaDescription.setText(description);
-
+        mTextViewTime.setText(time);
     }
 
     public void onClickUpdate(View view) {

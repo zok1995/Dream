@@ -48,17 +48,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private List<DreamDetails> dreamList;
     private int selectedRecordPosition = -1;
-    private TextView mTextViewName,mTextViewDescriprion;
+    private TextView mTextViewName,mTextViewDescriprion,mTextViewTime;
     private ActionBarDrawerToggle mDrawerToggle;
     private TimeService mTimeService;
     boolean mServiceBound = false;
+    String description, name,time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.listViewAllDreams);
-
 //        Date dat  = new Date();//initializes to now
 //        Calendar cal_alarm = Calendar.getInstance();
 //        Calendar cal_now = Calendar.getInstance();
@@ -112,11 +112,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             LinearLayout linearLayout = (LinearLayout) view;
             mTextViewName = (TextView) linearLayout.findViewById(R.id.textViewDreamName);
             mTextViewDescriprion = (TextView) linearLayout.findViewById(R.id.textViewDreamDescription);
-            String description = mTextViewDescriprion.getText().toString();
-            String name = mTextViewName.getText().toString();
+            mTextViewTime = (TextView) linearLayout.findViewById(R.id.textViewTimePicked);
+            description = mTextViewDescriprion.getText().toString();
+            name = mTextViewName.getText().toString();
+            time = mTextViewTime.getText().toString();
             final Intent intent = new Intent(this, ViewDream.class);
             intent.putExtra("NAME",name);
             intent.putExtra("DESCRIPTION",description);
+            intent.putExtra("TIME",time);
             startActivity(intent);
         }
     }
