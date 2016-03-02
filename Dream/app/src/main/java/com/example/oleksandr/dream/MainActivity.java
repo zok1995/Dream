@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             selectedRecordPosition = position - 1;
             showAlertDialogDelete();
         }
+
         return true;
     }
 
@@ -266,6 +267,17 @@ drawerLayout.setDrawerListener(mDrawerToggle);
         Intent intent = new Intent(this, TimeService.class);
         startService(intent);
         bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mServiceBound) {
+            unbindService(mServiceConnection);
+            mServiceBound = false;
+            Intent intent = new Intent(MainActivity.this,
+                    TimeService.class);
+            stopService(intent);
+        }
     }
 
     private DBHelper getHelper() {

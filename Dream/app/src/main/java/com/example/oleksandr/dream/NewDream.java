@@ -42,17 +42,19 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
         if (v == mButtonToList) {
             startActivity(new Intent(this, MainActivity.class));
             final DreamDetails dreamDetails = new DreamDetails();
+            Intent intent = new Intent(this, NewDream.class);
             dreamDetails.dreamName = mEditdreamNAme.getText().toString();
             dreamDetails.descriptionDream = mEditTextDreamDescription.getText().toString();
+            int hour = mTimePicker.getCurrentHour();
+            int minute = mTimePicker.getCurrentMinute();
            Log.i("TAAAAAAG", "onClick ");
             try {
                 //Insert do DB
                 final Dao<DreamDetails, Integer> daoDream = getHelper().getDreamDetailsesDao();
                 daoDream.create(dreamDetails);
                 Log.i("TAAAAAAG", "onClick insert " + mEditdreamNAme.getText().toString());
-                int hour = mTimePicker.getCurrentHour();
-                int minute = mTimePicker.getCurrentMinute();
-                Log.i("TAAAAAAG", "Time picked " + hour + " " + minute);
+                intent.putExtra("HOUR", hour);
+                intent.putExtra("MINUTE", minute);
 
             } catch (SQLException e) {
                 e.printStackTrace();
