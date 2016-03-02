@@ -18,6 +18,12 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+<<<<<<< Updated upstream
+=======
+
+import com.example.oleksandr.dream.services.TimeServices;
+import com.facebook.FacebookSdk;
+>>>>>>> Stashed changes
 
 import com.example.oleksandr.dream.Adapters.AdapterArrayDream;
 import com.example.oleksandr.dream.DB.DBHelper;
@@ -36,13 +42,39 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Dao<DreamDetails, Integer> dreamDetailsDao;
     private List<DreamDetails> dreamList;
     private int selectedRecordPosition = -1;
+<<<<<<< Updated upstream
     private TextView textView;
+=======
+    private TextView mTextViewName,mTextViewDescriprion;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private TimeServices timeServices;
+>>>>>>> Stashed changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.listViewAllDreams);
+<<<<<<< Updated upstream
+=======
+
+//        Date dat  = new Date();//initializes to now
+//        Calendar cal_alarm = Calendar.getInstance();
+//        Calendar cal_now = Calendar.getInstance();
+//        cal_now.setTime(dat);
+//        cal_alarm.setTime(dat);
+//        cal_alarm.set(Calendar.HOUR_OF_DAY,10);//set the alarm time
+//        cal_alarm.set(Calendar.MINUTE, 55);
+//        cal_alarm.set(Calendar.SECOND, 0);
+//        if(cal_alarm.before(cal_now)){//if its in the past increment
+//            cal_alarm.add(Calendar.DATE,1);
+//            Log.i("ALALRM", "Alarm working ");
+//        }
+        String time = timeServices.getTimestamp();
+        Log.i("Service time", time);
+
+
+>>>>>>> Stashed changes
         try {
             //Getting all Data from DB
             dreamDetailsDao = getHelper().getDreamDetailsesDao();
