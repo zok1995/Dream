@@ -29,6 +29,7 @@
         <provider android:authorities="com.facebook.app.FacebookContentProvider1745871962354784"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true" />
+        <service android:name="com.example.oleksandr.dream.service.TimeService"></service>
     </application>
 
 </manifest>

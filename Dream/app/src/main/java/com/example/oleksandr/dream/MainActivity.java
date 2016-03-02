@@ -1,11 +1,14 @@
 package com.example.oleksandr.dream;
 
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -21,6 +24,8 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.oleksandr.dream.service.TimeService;
 import com.facebook.FacebookSdk;
 
 import com.example.oleksandr.dream.Adapters.AdapterArrayDream;
@@ -45,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private int selectedRecordPosition = -1;
     private TextView mTextViewName,mTextViewDescriprion;
     private ActionBarDrawerToggle mDrawerToggle;
+    private TimeService mTimeService;
+    boolean mServiceBound = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,20 +59,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.listViewAllDreams);
 
-        Date dat  = new Date();//initializes to now
-        Calendar cal_alarm = Calendar.getInstance();
-        Calendar cal_now = Calendar.getInstance();
-        cal_now.setTime(dat);
-        cal_alarm.setTime(dat);
-        cal_alarm.set(Calendar.HOUR_OF_DAY,10);//set the alarm time
-        cal_alarm.set(Calendar.MINUTE, 55);
-        cal_alarm.set(Calendar.SECOND, 0);
-        if(cal_alarm.before(cal_now)){//if its in the past increment
-            cal_alarm.add(Calendar.DATE,1);
-            Log.i("ALALRM", "Alarm working ");
-        }
-
-
+//        Date dat  = new Date();//initializes to now
+//        Calendar cal_alarm = Calendar.getInstance();
+//        Calendar cal_now = Calendar.getInstance();
+//        cal_now.setTime(dat);
+//        cal_alarm.setTime(dat);
+//        cal_alarm.set(Calendar.HOUR_OF_DAY,10);//set the alarm time
+//        cal_alarm.set(Calendar.MINUTE, 55);
+//        cal_alarm.set(Calendar.SECOND, 0);
+//        if(cal_alarm.before(cal_now)){//if its in the past increment
+//            cal_alarm.add(Calendar.DATE,1);
+//            Log.i("ALALRM", "Alarm working ");
+//        }
 
         try {
             //Getting all Data from DB
@@ -241,13 +246,34 @@ drawerLayout.setDrawerListener(mDrawerToggle);
         return super.onOptionsItemSelected(item);
     }
 
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mServiceBound = false;
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+          TimeService.MyTimeService myTimeService = (TimeService.MyTimeService) service;
+            mTimeService = myTimeService.getService();
+            mServiceBound = true;
+        }
+    };
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent intent = new Intent(this, TimeService.class);
+        startService(intent);
+        bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+
     private DBHelper getHelper() {
         if (mDbHelper == null) {
             mDbHelper = OpenHelperManager.getHelper(this, DBHelper.class);
         }
         return mDbHelper;
     }
-
 
 }
 
