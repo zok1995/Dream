@@ -35,10 +35,8 @@ import com.facebook.appevents.AppEventsLogger;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+import com.example.oleksandr.dream.service.TimeService.MyTimeService;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener {
     private DBHelper mDbHelper = null;
@@ -60,11 +58,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.listViewAllDreams);
-//        Date dat  = new Date();//initializes to now
-//        Calendar cal_alarm = Calendar.getInstance();
-//        Calendar cal_now = Calendar.getInstance();
-//        cal_now.setTime(dat);
-//        cal_alarm.setTime(dat);
 //        cal_alarm.set(Calendar.HOUR_OF_DAY,10);//set the alarm time
 //        cal_alarm.set(Calendar.MINUTE, 55);
 //        cal_alarm.set(Calendar.SECOND, 0);
@@ -72,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 //            cal_alarm.add(Calendar.DATE,1);
 //            Log.i("ALALRM", "Alarm working ");
 //        }
-
+//        mTimeService.startService(new Intent(this, TimeService.class));
         try {
             //Getting all Data from DB
             dreamDetailsDao = getHelper().getDreamDetailsesDao();
@@ -102,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(intent);
             }
         });
-
+        onStart();
     }
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -118,8 +111,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             description = mTextViewDescriprion.getText().toString();
             name = mTextViewName.getText().toString();
             time = mTextViewTime.getText().toString();
-            mTimeService.startService(intent);
-            mTimeService.getTimestamp();
+
+            if (mServiceBound) {
+                String s =  mTimeService.getTimestamp();
+                Log.i("TIME TIME", s);
+            } else {
+                Log.i("TIME ERROR", "ERROR");
+            }
+
+
             intent.putExtra("NAME",name);
             intent.putExtra("DESCRIPTION",description);
             intent.putExtra("TIME",time);
@@ -262,7 +262,7 @@ drawerLayout.setDrawerListener(mDrawerToggle);
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-          TimeService.MyTimeService myTimeService = (TimeService.MyTimeService) service;
+            MyTimeService myTimeService = (MyTimeService) service;
             mTimeService = myTimeService.getService();
             mServiceBound = true;
         }
@@ -273,6 +273,7 @@ drawerLayout.setDrawerListener(mDrawerToggle);
         Intent intent = new Intent(this, TimeService.class);
         startService(intent);
         bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
+        Log.i("onStart Service", "Service started");
     }
     @Override
     protected void onStop() {

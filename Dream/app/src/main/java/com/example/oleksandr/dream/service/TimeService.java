@@ -9,13 +9,12 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Chronometer;
 
-/**
- * Created by oleksandr on 02.03.16.
- */
+
 public class TimeService extends Service {
     private static String LOG_TAG = "BoundService";
     private IBinder mBinder;
     private Chronometer mChronometer;
+
 
     @Override
     public void onCreate() {
