@@ -43,10 +43,12 @@ public class NewDream extends AppCompatActivity implements View.OnClickListener 
             startActivity(new Intent(this, MainActivity.class));
             final DreamDetails dreamDetails = new DreamDetails();
             Intent intent = new Intent(this, NewDream.class);
-            dreamDetails.dreamName = mEditdreamNAme.getText().toString();
-            dreamDetails.descriptionDream = mEditTextDreamDescription.getText().toString();
             int hour = mTimePicker.getCurrentHour();
             int minute = mTimePicker.getCurrentMinute();
+            dreamDetails.dreamName = mEditdreamNAme.getText().toString();
+            dreamDetails.descriptionDream = mEditTextDreamDescription.getText().toString();
+            dreamDetails.hour = hour;
+            dreamDetails.minute = minute;
            Log.i("TAAAAAAG", "onClick ");
             try {
                 //Insert do DB

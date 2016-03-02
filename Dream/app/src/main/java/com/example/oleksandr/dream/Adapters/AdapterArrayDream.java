@@ -43,7 +43,7 @@ public class AdapterArrayDream extends ArrayAdapter<String> {
 
             ((TextView) convertView.findViewById(R.id.textViewDreamName)).setText(dreamDetails.dreamName);
             ((TextView) convertView.findViewById(R.id.textViewDreamDescription)).setText(dreamDetails.descriptionDream);
-//            ((TextView) convertView.findViewById(R.id.textViewTimePicked)).setText(hour + " " + minutes);
+            ((TextView) convertView.findViewById(R.id.textViewTimePicked)).setText(dreamDetails.hour + " " + dreamDetails.minute);
         }else {
             Log.i("EROR", "ADAPTER ERROR");
         }
