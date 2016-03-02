@@ -35,6 +35,7 @@ import com.facebook.appevents.AppEventsLogger;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -110,13 +111,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             selectedRecordPosition = i - 1;
             /* Magick do not touch */
             LinearLayout linearLayout = (LinearLayout) view;
+            Intent intent = new Intent(this, ViewDream.class);
             mTextViewName = (TextView) linearLayout.findViewById(R.id.textViewDreamName);
             mTextViewDescriprion = (TextView) linearLayout.findViewById(R.id.textViewDreamDescription);
             mTextViewTime = (TextView) linearLayout.findViewById(R.id.textViewTimePicked);
             description = mTextViewDescriprion.getText().toString();
             name = mTextViewName.getText().toString();
             time = mTextViewTime.getText().toString();
-            final Intent intent = new Intent(this, ViewDream.class);
+            mTimeService.startService(intent);
+            mTimeService.getTimestamp();
             intent.putExtra("NAME",name);
             intent.putExtra("DESCRIPTION",description);
             intent.putExtra("TIME",time);
