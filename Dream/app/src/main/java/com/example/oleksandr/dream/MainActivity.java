@@ -25,13 +25,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.oleksandr.dream.service.TimeService;
-import com.facebook.FacebookSdk;
-
 import com.example.oleksandr.dream.Adapters.AdapterArrayDream;
 import com.example.oleksandr.dream.DB.DBHelper;
 import com.example.oleksandr.dream.DB.DreamDetails;
-import com.facebook.appevents.AppEventsLogger;
+import com.example.oleksandr.dream.service.TimeService;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
@@ -65,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 //            cal_alarm.add(Calendar.DATE,1);
 //            Log.i("ALALRM", "Alarm working ");
 //        }
-//        mTimeService.startService(new Intent(this, TimeService.class));
+//        mTimeService.startService(new Intent(this, TimeServices.class));
         try {
             //Getting all Data from DB
             dreamDetailsDao = getHelper().getDreamDetailsesDao();
@@ -112,14 +109,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             name = mTextViewName.getText().toString();
             time = mTextViewTime.getText().toString();
 
-            if (mServiceBound) {
                 String s =  mTimeService.getTimestamp();
                 Log.i("TIME TIME", s);
-            } else {
-                Log.i("TIME ERROR", "ERROR");
-            }
-
-
             intent.putExtra("NAME",name);
             intent.putExtra("DESCRIPTION",description);
             intent.putExtra("TIME",time);

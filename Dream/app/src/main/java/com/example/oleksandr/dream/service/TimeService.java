@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.os.SystemClock;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Chronometer;
 
-
 public class TimeService extends Service {
+    public TimeService() {
+    }
+
     private static String LOG_TAG = "BoundService";
     private IBinder mBinder;
     private Chronometer mChronometer;
