@@ -3,67 +3,91 @@ package com.example.oleksandr.dream.service;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.util.Log;
 import android.widget.Chronometer;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TimeService extends Service {
     public TimeService() {
     }
-
-    private static String LOG_TAG = "BoundService";
-    private IBinder mBinder;
-    private Chronometer mChronometer;
+    // constant
+    public static final long NOTIFY_INTERVAL = 10 * 1000; // 10 seconds
 
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        Log.v(LOG_TAG, "in onCreate");
-        mChronometer = new Chronometer(this);
-        mChronometer.setBase(SystemClock.elapsedRealtime());
-        mChronometer.start();
-    }
+    // run on another Thread to avoid crash
+    private Handler mHandler = new Handler();
+    // timer handling
+    private Timer mTimer = null;
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.v(LOG_TAG, "in onBind");
-        return mBinder;
+        return null;
     }
 
     @Override
-    public void onRebind(Intent intent) {
-        Log.v(LOG_TAG, "in onRebind");
-        super.onRebind(intent);
-    }
-
-    @Override
-    public boolean onUnbind(Intent intent) {
-        Log.v(LOG_TAG, "in onUnbind");
-        return true;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.v(LOG_TAG, "in onDestroy");
-        mChronometer.stop();
-    }
-
-    public String getTimestamp() {
-        long elapsedMillis = SystemClock.elapsedRealtime()
-                - mChronometer.getBase();
-        int hours = (int) (elapsedMillis / 3600000);
-        int minutes = (int) (elapsedMillis - hours * 3600000) / 60000;
-        int seconds = (int) (elapsedMillis - hours * 3600000 - minutes * 60000) / 1000;
-        int millis = (int) (elapsedMillis - hours * 3600000 - minutes * 60000 - seconds * 1000);
-        return hours + ":" + minutes + ":" + seconds + ":" + millis;
-    }
-
-    public class MyTimeService extends Binder {
-        public TimeService getService() {
-            return TimeService.this;
+    public void onCreate() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("[yyyy/MM/dd - HH:mm:ss]");
+        simpleDateFormat.format(new Date());
+        // cancel if already existed
+        if (mTimer != null) {
+            mTimer.cancel();
+        } else {
+            // recreate new
+            mTimer = new Timer();
         }
+        // schedule task
+        mTimer.scheduleAtFixedRate(new TimeDisplayTimerTask(), 0, NOTIFY_INTERVAL);
     }
+
+    class TimeDisplayTimerTask extends TimerTask {
+        Intent intent = new Intent(getApplicationContext(), TimeDisplayTimerTask.class);
+
+        @Override
+        public void run() {
+            // run on another thread
+            mHandler.post(new Runnable() {
+
+                @Override
+                public void run() {
+                    final int time = getDateTime();
+                    Calendar c = Calendar.getInstance();
+//                        int hour = String.valueOf(c.get(Calendar.HOUR));
+                    Log.i("TAG", String.valueOf(time));
+//                        Log.i("TAGGG",hour);
+//                        intent.putExtra("TIME", time);
+                    if (time == 3){
+//                            Toast.makeText(getApplicationContext(), getDateTime(),
+//                                    Toast.LENGTH_SHORT).show();
+                        Log.i("TAGGG","it works");
+                    }
+
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            });
+        }
+
+        private int getDateTime() {
+
+            Calendar c = Calendar.getInstance();
+            int hour = c.get(Calendar.HOUR); //String.valueOf(c.get(Calendar.HOUR));
+            return hour;
+        }
+
+    }
+
 }

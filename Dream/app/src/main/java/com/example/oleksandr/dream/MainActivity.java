@@ -1,6 +1,8 @@
 package com.example.oleksandr.dream;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,6 +10,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -24,8 +27,10 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.oleksandr.dream.Adapters.AdapterArrayDream;
+import com.example.oleksandr.dream.Alarm.AlarmMain;
 import com.example.oleksandr.dream.DB.DBHelper;
 import com.example.oleksandr.dream.DB.DreamDetails;
 import com.example.oleksandr.dream.service.TimeService;
@@ -33,7 +38,6 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
 import java.util.List;
-import com.example.oleksandr.dream.service.TimeService.MyTimeService;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener {
     private DBHelper mDbHelper = null;
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.listViewAllDreams);
+        startService(new Intent(this, TimeService.class));
 //        cal_alarm.set(Calendar.HOUR_OF_DAY,10);//set the alarm time
 //        cal_alarm.set(Calendar.MINUTE, 55);
 //        cal_alarm.set(Calendar.SECOND, 0);
@@ -93,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
         onStart();
+        alarm(this);
     }
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -109,8 +115,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             name = mTextViewName.getText().toString();
             time = mTextViewTime.getText().toString();
 
-                String s =  mTimeService.getTimestamp();
-                Log.i("TIME TIME", s);
+//                String s =  mTimeService.getDateTime();
+//                Log.i("TIME TIME", s);
+
+
             intent.putExtra("NAME",name);
             intent.putExtra("DESCRIPTION",description);
             intent.putExtra("TIME",time);
@@ -244,39 +252,15 @@ drawerLayout.setDrawerListener(mDrawerToggle);
         return super.onOptionsItemSelected(item);
     }
 
-    private ServiceConnection mServiceConnection = new ServiceConnection() {
 
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            mServiceBound = false;
-        }
+    private void alarm(Context context){
+        AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent i = new Intent(context, AlarmMain.class);
+        PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 60, pi);
+        Toast.makeText(getApplicationContext(),"alarm method",Toast.LENGTH_SHORT);
+    }
 
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            MyTimeService myTimeService = (MyTimeService) service;
-            mTimeService = myTimeService.getService();
-            mServiceBound = true;
-        }
-    };
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Intent intent = new Intent(this, TimeService.class);
-        startService(intent);
-        bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
-        Log.i("onStart Service", "Service started");
-    }
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (mServiceBound) {
-            unbindService(mServiceConnection);
-            mServiceBound = false;
-            Intent intent = new Intent(MainActivity.this,
-                    TimeService.class);
-            stopService(intent);
-        }
-    }
 
     private DBHelper getHelper() {
         if (mDbHelper == null) {

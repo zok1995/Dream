@@ -10,9 +10,6 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-/**
- * Created by Oleksandr on 25.02.2016.
- */
 public class AlarmMain extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent)
@@ -32,7 +29,7 @@ public class AlarmMain extends BroadcastReceiver {
         AlarmManager am =( AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, AlarmMain.class);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000, pi); // Millisec * Second * Minute
+        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 60, pi); // Millisec * Second * Minute
     }
 
     public void CancelAlarm(Context context)
